@@ -1,14 +1,3 @@
-class Cube:
-    def __init__(self) -> None:
-        self.reset()
-
-    def reset(self) -> None:
-        self.front = [1]*9
-        self.up    = [2]*9
-        self.down  = [3]*9
-        self.top   = [4]*9
-        self.left  = [5]*9
-        self.right = [6]*9
 # ============ КЛАСС КНОПКИ ============
 class Button:
     """Класс, описывающий кнопку."""
@@ -47,7 +36,4 @@ class Button:
             if self.rect.collidepoint(event.pos):
                 return True
         return False
-#============== КЛАСС КУБИКА РУБИКА=========================
-#class CubeRender:
-    
-    
+
