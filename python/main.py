@@ -1,4 +1,4 @@
-from rubiks.rubiks import Cube, Button
+from rubiks.rubiks import Cube, Button, CubeRender
 
 import pygame
 import sys
@@ -6,7 +6,7 @@ import sys
 # Инициализация всех модулей pygame
 pygame.init()
 # ============ НАСТРОЙКИ ОКНА ============
-WIDTH, HEIGHT = 600, 400
+WIDTH, HEIGHT = 800, 800
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Кубик Рубика")
 
@@ -38,8 +38,11 @@ font = pygame.font.SysFont("Arial", 24)
 # def main() -> None:
     # cube = Cube() #reset
     # print(cube.front)
-   
+rubiksMain =  CubeRender(width_ONEelement = 100, height_ONEelement = 100, width_SCREEN = WIDTH, height_SCREEN = HEIGHT)
+cube = Cube()
+
 # ============ ГЛАВНЫЙ ЦИКЛ ============
+
 running = True
 while running:
     # --- Обработка событий ---
@@ -55,11 +58,12 @@ while running:
         # # Проверяем нажатие на кнопку "Назад"
         # if btn_back.is_clicked(event):
             # prev_color()
-
+    COLORS_CURENT = cube.createFrontArrCurent()
     # --- Отрисовка ---
 
     # Заливаем фон серым цветом (чтобы белый квадрат был виден)
     screen.fill(BG_COLOR)
+    rubiksMain.draw(screen, arrColor = COLORS_CURENT )
 
     # # Рисуем квадрат текущим цветом
     # # Размер квадрата — 100x100, позиция — по центру верхней части окна
