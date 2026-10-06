@@ -13,15 +13,44 @@ class Cube:
 #Создаем массив цветов для вывода на экран согласно растановки(показывается всегда только фронт)    
     def createFrontArrCurent(self):
         color_map = {
-            1: (255, 0, 0),
-            2: (0, 255, 0),
-            3: (0, 0, 255),
-            4: (255, 255, 0),
-            5: (255, 165, 0),
-            6: (255, 255, 255),
+            1: (255, 0, 0),# Красный
+            2: (255, 255, 255),# Белый
+            3: (255, 255, 0),     # Жёлтый
+            4: (255, 165, 0),     # Оранжевый
+            5: (0, 255, 0),       # Зелёный
+            6: (0, 0, 255),       # Синий
+         
         }
         return [color_map[value] for value in self.front]
-                    
+    
+    #Функция поворота U
+    def runU (self):
+        tempArrUp = self.up.copy()
+        tempArrFront = self.front.copy()
+        tempArrLeft = self.left.copy()
+        tempArrTop = self.top.copy()
+        tempArrRight = self.right.copy()
+        self.up[0] = tempArrUp[6]
+        self.up[1] = tempArrUp[3]
+        self.up[2] = tempArrUp[0]    
+        self.up[3] = tempArrUp[7]
+        self.up[4] = tempArrUp[4]
+        self.up[5] = tempArrUp[1] 
+        self.up[6] = tempArrUp[8]
+        self.up[7] = tempArrUp[5]
+        self.up[8] = tempArrUp[2] 
+        self.left[0] = tempArrFront[0]
+        self.left[1] = tempArrFront[1]
+        self.left[2] = tempArrFront[2]
+        self.top[0] = tempArrLeft[0]
+        self.top[1] = tempArrLeft[1]
+        self.top[2] = tempArrLeft[2]
+        self.right[0] = tempArrTop[0]
+        self.right[1] = tempArrTop[1]
+        self.right[2] = tempArrTop[2]
+        self.front[0] = tempArrRight[0]
+        self.front[1] = tempArrRight[1]
+        self.front[2] = tempArrRight[2]
    
 # ============ КЛАСС КНОПКИ ============
 class Button:

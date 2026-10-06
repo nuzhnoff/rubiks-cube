@@ -2,6 +2,7 @@ from rubiks.rubiks import Cube, Button, CubeRender
 
 import pygame
 import sys
+import time
 
 # Инициализация всех модулей pygame
 pygame.init()
@@ -64,6 +65,11 @@ while running:
     # Заливаем фон серым цветом (чтобы белый квадрат был виден)
     screen.fill(BG_COLOR)
     rubiksMain.draw(screen, arrColor = COLORS_CURENT )
+    cube.runU()
+    time.sleep(1)
+    print(cube.up)
+
+    print(cube.front)
 
     # # Рисуем квадрат текущим цветом
     # # Размер квадрата — 100x100, позиция — по центру верхней части окна
