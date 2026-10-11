@@ -7,7 +7,7 @@ import time
 # Инициализация всех модулей pygame
 pygame.init()
 # ============ НАСТРОЙКИ ОКНА ============
-WIDTH, HEIGHT = 800, 800
+WIDTH, HEIGHT = 500, 500
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Кубик Рубика")
 
@@ -36,12 +36,22 @@ font = pygame.font.SysFont("Arial", 24)
 
 
 
-# def main() -> None:
-    # cube = Cube() #reset
-    # print(cube.front)
-rubiksMain =  CubeRender(width_ONEelement = 100, height_ONEelement = 100, width_SCREEN = WIDTH, height_SCREEN = HEIGHT)
+# ============ СОЗДАЕМ КУБИК ============
+rubiksMain =  CubeRender(width_ONEelement = WIDTH*0.175, height_ONEelement = WIDTH*0.175, width_SCREEN = WIDTH, height_SCREEN = HEIGHT)
+# ============ ПОДГОТАВЛИВАЕМ КУБИК В ИСХОДНОЕ СОСТОЯНИЕ ============
 cube = Cube()
-
+# ============ СОЗДАЕМ КНОПКУ U ============
+btn_U_revers = Button(x=WIDTH*0.8, y=WIDTH*0.20, width=WIDTH*0.08, height=HEIGHT*0.08, text="U'")
+# ============ СОЗДАЕМ КНОПКУ U' ============
+btn_U = Button(x=WIDTH*0.15, y=WIDTH*0.20, width=WIDTH*0.08, height=HEIGHT*0.08, text="U")
+# ============ СОЗДАЕМ КНОПКУ D' ============
+btn_D_revers = Button(x=WIDTH*0.15, y=WIDTH*0.57, width=WIDTH*0.08, height=HEIGHT*0.08, text="D'")
+# ============ СОЗДАЕМ КНОПКУ D ============
+btn_D = Button(x=WIDTH*0.8, y=WIDTH*0.57, width=WIDTH*0.08, height=HEIGHT*0.08, text="D")
+# ============ СОЗДАЕМ КНОПКУ F ============
+btn_F = Button(x=WIDTH*0.8, y=WIDTH*0.45, width=WIDTH*0.08, height=HEIGHT*0.08, text="F")
+# ============ СОЗДАЕМ КНОПКУ F ============
+btn_L = Button(x=WIDTH*0.15, y=WIDTH*0.10, width=WIDTH*0.08, height=HEIGHT*0.08, text="L")
 # ============ ГЛАВНЫЙ ЦИКЛ ============
 
 running = True
@@ -52,10 +62,26 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        # # Проверяем нажатие на кнопку "Вперёд"
-        # if btn_next.is_clicked(event):
-            # next_color()
-
+        # Проверяем нажатие на кнопку U'
+        if btn_U_revers.is_clicked(event):
+            cube.runU_revers()
+        # Проверяем нажатие на кнопку U
+        if btn_U.is_clicked(event):
+            cube.runU()
+        # Проверяем нажатие на кнопку D'
+        if btn_D_revers.is_clicked(event):
+            cube.runD_revers()
+        # Проверяем нажатие на кнопку D
+        if btn_D.is_clicked(event):
+            cube.runD()
+            # Проверяем нажатие на кнопку F
+        if btn_F.is_clicked(event):
+            cube.runF()
+           # Проверяем нажатие на кнопку L
+        if btn_L.is_clicked(event):
+            cube.runL()
+            
+            
         # # Проверяем нажатие на кнопку "Назад"
         # if btn_back.is_clicked(event):
             # prev_color()
@@ -65,11 +91,8 @@ while running:
     # Заливаем фон серым цветом (чтобы белый квадрат был виден)
     screen.fill(BG_COLOR)
     rubiksMain.draw(screen, arrColor = COLORS_CURENT )
-    cube.runU()
-    time.sleep(1)
-    print(cube.up)
-
-    print(cube.front)
+    #print(COLORS_CURENT)
+    #time.sleep(1)
 
     # # Рисуем квадрат текущим цветом
     # # Размер квадрата — 100x100, позиция — по центру верхней части окна
@@ -90,9 +113,14 @@ while running:
         # 3
     # )
 
-    # # Отрисовываем обе кнопки
-    # btn_back.draw(screen)
-    # btn_next.draw(screen)
+    # Отрисовываем кнопки
+    btn_U_revers.draw(screen)
+    btn_U.draw(screen)
+    btn_D_revers.draw(screen)
+    btn_D.draw(screen)
+    btn_F.draw(screen)
+    btn_L.draw(screen)
+
 
     # # Подпись под квадратом: название текущего цвета
     # label = font.render(
